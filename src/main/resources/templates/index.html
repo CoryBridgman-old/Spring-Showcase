@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/png" href="/CSS/spy_favicon.png">
+<link rel="stylesheet" href="/CSS/styles.css">
+<meta charset="ISO-8859-1">
+<title>Mission Control Home</title>
+</head>
+<body>
+	<div id="clockHeader">
+		<div id="clockTime">
+			<span  th:text="${#dates.format(#dates.createNow(), 'HH:mm')}">time</span>
+		</div>
+		<div id="clockDay">
+			<span  th:text="${#dates.format(#dates.createNow(), 'MMM dd')}">day</span>
+		</div>
+	</div>
+	
+	<h1 id="pageTitle">Most Excellent Spy App</h1>
+
+	<h2>CONTRACT & HIRE</h2>
+	<div id="agentButtons">
+		<a class="button" href="#" th:href="@{/createAgent}">Enlist an Agent</a>
+		<a class="button" href="#" th:href="@{/viewAgents}">View Agents</a>	
+	</div>
+	<a class="button" href="#" th:href="@{/createMission}">Contract a Mission</a>
+	
+	<h2>View Missions For</h2>
+ 	<form action="#"  method="GET" th:action="@{/viewMissions}" th:object="${viewMissions}" id="homeForm"> 
+		<select th:field="*{agentID}" class="dropDown" id="homeDropDown">
+			<option th:each="list : ${agents}" th:text="${list.agentName}" th:value="${list.agentID}" >
+		</select>
+	 	<input class="button" type="submit" value="GO">
+	</form> 
+
+	<a class="button" href="#" th:href="@{/viewAllMissions}">View All Missions</a>	
+	
+	<a class="button" id="quit" href="#">Quit (disabled)</a>
+	</body>
+</html>

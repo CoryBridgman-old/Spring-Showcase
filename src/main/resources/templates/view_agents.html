@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/png" href="/CSS/spy_favicon.png">
+<link rel="stylesheet" href="/CSS/styles.css">
+<meta charset="ISO-8859-1">
+<title>View Agents</title>
+</head>
+<body>
+	<div id="clockHeader">
+		<div id="clockTime">
+			<span  th:text="${#dates.format(#dates.createNow(), 'HH:mm')}">time</span>
+		</div>
+		<div id="clockDay">
+			<span  th:text="${#dates.format(#dates.createNow(), 'MMM dd')}">day</span>
+		</div>
+	</div>
+	
+ 	<div class="tableBox" th:if="${agentList.size() < 1}">
+ 		<h1 id="pageTitle">There are currently NO agents</h1>
+	</div>	 
+	<div class="tableBox" th:unless="${agentList.size() < 1}">
+		<h1 id="pageTitle">Active Agents</h1>
+		<table border="1">
+			<tr>
+				<th>Agent</th><th colspan="2">Operation</th>
+			</tr>
+			<tr th:each="agent : ${agentList}" >
+				<!-- <td th:text="${agent.agentName}">Agent name</td> -->
+				<td>
+					<a id="agentNameLink" href="#" th:href="@{/missionsFor/} + ${agent.agentID}" 
+					th:text="${agent.agentName}">Agent Name</a>
+				</td>
+				<td th:unless="${agent.agentActive == 0}" colspan="2">On Mission</td>
+				<td th:if="${agent.agentActive == 0}"><a href="#" th:href="@{/editAgent/} + ${agent.agentID}">Edit</a></td>
+				<td th:if="${agent.agentActive == 0}"><a href="#" th:href="@{/deleteAgent/} + ${agent.agentID}">Delete</a></td>
+			</tr>
+		</table>
+	</div><br>
+	<a class="button" href="#" th:href="@{/createAgent}">Enlist an Agent</a>
+	<a class="button" href="#" th:href="@{/viewAllMissions}">View Missions</a>
+	<a class="button" th:href="@{/}">Go Home</a>
+</body>
+</html>

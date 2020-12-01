@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/png" href="/CSS/spy_favicon.png">
+<link rel="stylesheet" href="/CSS/styles.css">
+<meta charset="ISO-8859-1">
+<title>Contract a New Mission</title>
+</head>
+<body>
+	<div id="clockHeader">
+		<div id="clockTime">
+			<span  th:text="${#dates.format(#dates.createNow(), 'HH:mm')}">time</span>
+		</div>
+		<div id="clockDay">
+			<span  th:text="${#dates.format(#dates.createNow(), 'MMM dd')}">day</span>
+		</div>
+	</div>
+	
+	<h1 id="pageTitle">Contract a Mission</h1>
+	<form method="POST" th:object="${newMission}" th:action="@{/addMission}">
+	<div class="formBody">
+		<div class="formLeft">
+			<label>Mission Title:</label>
+			<label>Agent:</label>
+		</div>
+		<div class="formRight">
+			<input type="text" th:field="*{title}" placeholder="Mission Title">
+			<select th:field="*{agent}" class="dropDown">
+				<option th:each="getAgent : ${agentNames}"  th:text="${getAgent.agentName}" th:value="${getAgent.agentName}">
+			</select>
+		</div>
+	</div>
+	<h3>Enter Gadgets</h3>
+	<div class="formBody">
+		<div class="formLeft">
+			<label>Gadget 1:</label>
+			<label>Gadget 2:</label>
+			<label>Duration:</label>
+		</div>
+		<div class="formRight">
+			<input type="text" th:field="*{gadget1}" placeholder="Gadget 1">	
+			<input type="text" th:field="*{gadget2}" placeholder="Gadget 2">
+			<select th:field="*{duration}" class="dropDown" >
+				<option th:value="1">1 Minute</option>
+				<option th:value="3">3 Minutes</option>
+				<option th:value="5">5 Minutes</option>
+				<option th:value="10">10 Minutes</option>
+				<option th:value="15">15 Minutes</option>
+			</select>
+		</div>
+	</div>
+		<input class="createButton" type="submit" value="Create Mission">
+	</form>
+	<a class="button" th:href="@{/}">Go Home</a>
+</body>
+</html>

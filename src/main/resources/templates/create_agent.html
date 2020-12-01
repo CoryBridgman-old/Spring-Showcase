@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/png" href="/CSS/spy_favicon.png">
+<link rel="stylesheet" href="/CSS/styles.css">
+<meta charset="ISO-8859-1">
+<title>Enlist a New Agent</title>
+</head>
+<body>
+	<div id="clockHeader">
+		<div id="clockTime">
+			<span  th:text="${#dates.format(#dates.createNow(), 'HH:mm')}">time</span>
+		</div>
+		<div id="clockDay">
+			<span  th:text="${#dates.format(#dates.createNow(), 'MMM dd')}">day</span>
+		</div>
+	</div>
+	
+	<h1 id="pageTitle">Enlist an Agent</h1>
+	<form method="POST" th:object="${newAgent}" th:action="@{/addAgent}">
+		<div class="formBody">
+			<div class="formLeft">
+				<label>Agent Name:</label>
+			</div>
+			<div class="formRight">
+				<input type="text" th:field="*{agentName}" placeholder="Agent Name">	
+			</div>
+		</div>
+		<input class="createButton" type="submit" value="Create Agent">
+	</form>
+	<a class="button" th:href="@{/}">Go Home</a>
+</body>
+</html>

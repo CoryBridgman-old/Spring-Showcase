@@ -1,0 +1,236 @@
+@charset "ISO-8859-1";
+
+/*
+	Styling for the app
+	Cory Bridgman
+	November 2020
+*/
+
+html{	
+	background-color: rgb(45,75,70);
+	background-image: url(../Images/spy.png);
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+}
+html, body{
+	margin: 0;
+	padding: 15px 0 0 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	text-align: center;
+	color: white;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+	text-shadow: none;
+}
+
+#pageTitle{
+	border-top: 5px double black;
+	border-bottom: 5px double black;
+	width: 100%;
+	padding: 3px 0 5px 0;
+}
+
+#homeForm{
+	width: 100%;
+	margin: 0;
+	border: none;
+}
+
+form{
+	width: 375px;
+	margin: 5px 0 15px 0;
+	border-width: 3px;
+	border-style: solid;
+	border-image: linear-gradient(to bottom, rgb(200, 255, 240), rgba(0, 0, 0, 0)) 1 100%;
+}
+
+label, input{
+	margin: 2px 0;
+}
+input{
+	border-radius: 5px;
+	border: 2px solid black;
+	text-align: center;
+}
+
+	
+.formBody{
+	width: 100%;
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	
+}
+.formLeft, .formRight{
+	padding: 0 5px;
+	display: flex;
+	flex-flow: column;
+}
+.formLeft{text-align: left; width: 100px;}
+.formRight{justify-content: left; width: 200px;}
+
+.dropDown{
+	
+	padding-right: 25px;
+	border-radius: 5px;
+	border: 3px solid black;
+	text-align: center;
+	background-color: rgb(205, 245, 240);
+	appearance: none;
+	background-image: url(../Images/ArrowDown.png);
+  	background-repeat: no-repeat;
+  	background-position: right;
+  	background-size: auto 100% ; 
+}
+#homeDropDown{
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+option{
+	background-color: white;
+}
+
+.button{
+	border: 3px solid black;
+	background-color: rgb(205, 245, 240);
+	width: 175px;
+	text-align: center;
+	margin: 2px;
+	padding: 4px;
+	border-radius: 5px;
+}
+.createButton{
+	margin: 4px 0;
+	border: 3px solid black;
+	background-color: rgb(225, 245, 240);
+	width: 150px;
+	text-align: center;
+	font-size: 1em;
+	padding: 4px;
+	border-radius: 15px;
+}
+
+.button:hover, .createButton:hover, .dropDown:hover{
+	border: rgb(50, 250, 175) solid;
+	background-color: rgb(140, 215, 200);
+}
+.button:active, .createButton:active{
+	background-color: rgb(150, 215, 195);
+}
+.button a:active{
+	width: 98%;
+	padding-left: 2%;
+}
+#agentButtons{
+	width: 400px;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+}
+
+/*   -=| Table |=-   */
+table, td, tr, th{
+	border-collapse: collapse;
+	border: 2px black solid;
+	background-color: rgb(50, 95, 90);
+	transition: 0.3s;
+}
+td, th{
+	padding: 5px;
+}
+td:hover, th:hover{
+	background-color: rgb(65, 110, 105);	
+}
+td a{
+	color: rgb(200, 230, 250);
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	width: 100%;
+}
+td a:hover{
+	color: rgb(250, 220, 225);
+}
+td a:active{
+	color: red;
+}
+
+#agentNameLink{
+	color: rgb(255, 225, 230);
+}
+#agentNameLink:hover{
+	color: rgb(180,255,230);
+}
+#agentNameLink:active{
+	color: limegreen;
+}
+
+.tableBox{
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	width:100%;
+}
+
+.hiddenTable{
+	border: 0;
+}
+
+#actContainer{
+	background-color: rgba(255, 100, 100, 0.25);
+}
+#actContainer:hover{
+	background-color: rgba(255, 100, 100, 0.4);
+}
+#missionActive{
+	color: rgb(255, 150, 150);
+}
+.missionUnavailable{
+	color: rgb(215, 200, 200);
+}
+
+/* Clock Header */
+#clockHeader{
+	width: 300px;
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+}
+#clockTime, #clockDay{
+	width: 150px;
+	height: 100%;
+	font-size: 2em;	
+}
+#clockTime{
+	padding-right: 5px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-image: linear-gradient(to bottom, rgb(200, 255, 240), rgba(0, 0, 0, 0)) 1 100%;
+}
+#clockDay{
+	padding-left: 5px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-image: linear-gradient(to bottom, rgb(200, 255, 240), rgba(0, 0, 0, 0)) 1 100%;
+}
+
+
+#quit{
+	background-color: rgb(235, 80, 105);
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+#quit:hover{
+	background-color: red;
+	border-color: rgb(255, 95, 95);
+	color: white;
+}

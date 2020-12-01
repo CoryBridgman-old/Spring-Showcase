@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/png" href="/CSS/spy_favicon.png">
+<link rel="stylesheet" href="/CSS/styles.css">
+<meta charset="ISO-8859-1">
+<title >View All Missions</title>
+</head>
+<body>
+	<div id="clockHeader">
+		<div id="clockTime">
+			<span  th:text="${#dates.format(#dates.createNow(), 'HH:mm')}">time</span>
+		</div>
+		<div id="clockDay">
+			<span  th:text="${#dates.format(#dates.createNow(), 'MMM dd')}">day</span>
+		</div>
+	</div>
+
+ 	<div class="tableBox" th:if="${missionList.size() < 1}">
+ 		<h1 id="pageTitle">NO Active Missions</h1>
+	</div>	 
+	<div class="tableBox" th:unless="${missionList.size() < 1}">
+		<h1 id="pageTitle">All Missions</h1>
+		<table border="1">
+			<tr>
+				<th>Agent</th><th>Title</th><th>Gadget 1</th><th>Gadget 2</th><th colspan="2">Operations</th><th>Status</th>
+			</tr>
+			<tr th:each="mission : ${allMissions}" >
+				<td>
+					<a id="agentNameLink" href="#" th:href="@{/missionsFor/} + ${mission.agentID}" 
+					th:text="${mission.agentName}">Agent Name</a>
+				</td>
+				<td th:text="${mission.title}">Mission Name</td>
+				<td th:text="${mission.gadget1}">Gadget 1</td>
+				<td th:text="${mission.gadget2}">Gadget 2</td>
+				<!--  -->
+				<td th:if="${mission.isActive == 2}" colspan="2">
+					<span th:if="${mission.timeRemaining == '0'}">
+						<a href="#" th:href="@{/completeMissionAll/} + ${mission.id}">Mission Complete</a>
+					</span>
+					<span th:unless="${mission.timeRemaining == '0'}" th:text="${mission.timeRemaining}">N/A</span>
+				</td>
+				<td th:unless="${mission.isActive == 2}"><a href="#" th:href="@{/editMission/} + ${mission.id}">Edit</a></td>
+				<td th:unless="${mission.isActive == 2}"><a href="#" th:href="@{/deleteMissionFromAll/} + ${mission.id}">Delete</a></td>
+				<!--  -->
+				<td th:if="${mission.isActive == 2}" id="actContainer"><span id="missionActive">Active</span></td>
+				<td th:if="${mission.isActive == 1}"><span class="missionUnavailable">Unavailable</span></td>
+				<td th:if="${mission.isActive == 0}"><a href="#" th:href="@{/launchMissionAll/} + ${mission.id}">Launch</a></td>
+			</tr>
+		</table>
+	</div>
+	<a class="button" href="#" th:href="@{/createMission}">Create a Mission</a>
+	<a class="button" href="#" th:href="@{/viewAgents}">View Agents</a>
+	<a class="button" th:href="@{/}">Go Home</a>
+</body>
+</html>
